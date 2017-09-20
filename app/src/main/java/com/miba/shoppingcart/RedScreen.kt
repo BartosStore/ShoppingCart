@@ -86,15 +86,19 @@ class RedScreen : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
+        Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: " + id)
 
         return if (id == R.id.action_settings) {
+            Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: settings")
             true
-        } else if (id == R.id.action_red_screen) {
+        } else if (id == R.id.action_blue_screen) {
+            Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: red")
             move2BlueScreen()
         } else super.onOptionsItemSelected(item)
     }
 
     private fun move2BlueScreen(): Boolean {
+        Log.d(KApp.LOG_MIBA, "RedScreen -> mode2BlueScreen")
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         return true
