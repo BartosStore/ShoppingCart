@@ -46,7 +46,9 @@ class RedScreen : AppCompatActivity() {
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Number of items: " + shoppingAdapter!!.itemCount, Snackbar.LENGTH_LONG)
+            goods!!.add(ShoppingItem("Okurka", "Salatova"))
+            shoppingAdapter!!.setData(goods!!)
+            Snackbar.make(view, "Byla přidána nová položka: " + goods!![goods!!.size - 1].name, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
     }
