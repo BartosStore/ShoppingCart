@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        btn_red_screen.setOnClickListener {
-            val intent = Intent(this, RedScreen::class.java)
-            startActivity(intent)
-        }
+//        btn_red_screen.setOnClickListener {
+//            val intent = Intent(this, RedScreen::class.java)
+//            startActivity(intent)
+//        }
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->

@@ -9,17 +9,51 @@
     android:background="@android:color/holo_blue_light"
     tools:showIn="@layout/activity_main">
 
+    <!--<Button-->
+        <!--android:id="@+id/btn_red_screen"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Nakupni seznam" />-->
+
+    <TextView
+        android:id="@+id/tvActualization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aktualizace"
+        android:padding="10dp"
+        style="@style/Base.TextAppearance.AppCompat.Title" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kotlin test!"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:paddingLeft="20dp"
+        android:text="Nebyla přidána nová položka"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        app:layout_constraintTop_toBottomOf="@id/tvActualization" />
 
-    <Button
-        android:id="@+id/btn_red_screen"
-        app:layout_constraintTop_toTopOf="parent"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red screen" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="60dp"
+        android:paddingRight="100dp"
+        android:text="Jestli chceš, přejdi do košíku... "/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/ic_redo_black_24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Váš kapesní nákupní košík"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
