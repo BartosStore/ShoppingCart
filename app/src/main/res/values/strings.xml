@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShoppingCart</string>
+    <string name="action_red_screen">Red Screen</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_red_screen">RedScreen</string>
+    <string name="action_blue_screen">Back to blue</string>
+</resources>
