@@ -4,4 +4,17 @@
     <string name="action_settings">Nastavení</string>
     <string name="title_activity_red_screen">Obsah košíku</string>
     <string name="action_blue_screen">Zpět na dashboard</string>
+
+    <string name="dialog_add_title">Nová položka</string>
+    <string name="dialog_add_message">Zadejte název a popis nové položky.</string>
+
+    <string name="action_interrupt">Akce zrušena</string>
+    <string name="item_added">"Byla přidána nová položka: "</string>
+    <string name="button_storno">Storno</string>
+    <string name="button_ok">OK</string>
+
+    <string name="actualization">Aktualizace</string>
+    <string name="dashboard_default_news">Nebyla přidána nová položka</string>
+    <string name="dashboard_add">...váš kapesní nákupní košík</string>
+    <string name="dashboard_hint">Jestli chceš, přejdi do košíku.</string>
 </resources>

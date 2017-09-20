@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
+        style="@style/Base.TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nazev:"
-        style="@style/Base.TextAppearance.AppCompat.Caption"/>
+        android:text="Nazev:" />
 
     <EditText
         android:id="@+id/etName"
@@ -16,10 +17,10 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        style="@style/Base.TextAppearance.AppCompat.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Popis:"
-        style="@style/Base.TextAppearance.AppCompat.Caption"/>
+        android:text="Popis:" />
 
     <EditText
         android:id="@+id/etDescription"

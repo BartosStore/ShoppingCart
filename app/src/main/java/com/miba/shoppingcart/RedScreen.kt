@@ -54,24 +54,24 @@ class RedScreen : AppCompatActivity() {
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
             val addItemDialog = AlertDialog.Builder(this).create()
-            addItemDialog.setTitle("Nova polozka")
-            addItemDialog.setMessage("Zadejte nazev a popis nove polozky.")
+            addItemDialog.setTitle(R.string.dialog_add_title)
+            addItemDialog.setMessage(getString(R.string.dialog_add_message))
             val view = LayoutInflater.from(this).inflate(R.layout.dialog_add_item, null, false)
             addItemDialog.setView(view)
 
-            addItemDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Storno", {
+            addItemDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.button_storno), {
                 dialogInterface, i ->
-                Snackbar.make(view, "Akce zrusena", Snackbar.LENGTH_SHORT)
+                Snackbar.make(view, getString(R.string.action_interrupt), Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show()
             })
 
-            addItemDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", {
+            addItemDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.button_ok), {
                 dialogInterface, i ->
                 val name = view.etName
                 val description = view.etDescription
                 goods!!.add(ShoppingItem(name.text.toString(), description.text.toString()))
                 shoppingAdapter!!.setData(goods!!)
-                Snackbar.make(view, "Byla přidána nová položka: " + goods!![goods!!.size - 1].name, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, getString(R.string.item_added) + goods!![goods!!.size - 1].name, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show()
             })
 
@@ -86,19 +86,15 @@ class RedScreen : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: " + id)
 
         return if (id == R.id.action_settings) {
-            Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: settings")
             true
         } else if (id == R.id.action_blue_screen) {
-            Log.d(KApp.LOG_MIBA, "RedScreen -> item selected: red")
             move2BlueScreen()
         } else super.onOptionsItemSelected(item)
     }
 
     private fun move2BlueScreen(): Boolean {
-        Log.d(KApp.LOG_MIBA, "RedScreen -> mode2BlueScreen")
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         return true
