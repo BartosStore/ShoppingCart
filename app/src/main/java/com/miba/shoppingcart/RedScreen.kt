@@ -37,8 +37,6 @@ class RedScreen : AppCompatActivity() {
         goods = ArrayList<ShoppingItem>()
         goods!!.add(ShoppingItem("Chleba", "Znacka FitBread"))
         goods!!.add(ShoppingItem("Mléko", "Znacka FitMilk"))
-        Log.d(KApp.LOG_MIBA, "RedScreen -> goods: " + goods)
-        Log.d(KApp.LOG_MIBA, "RedScreen -> goods 1: " + goods!!.get(0).name)
 
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         shoppingAdapter = ShopListAdapter(this, goods!!, R.layout.list_simple)

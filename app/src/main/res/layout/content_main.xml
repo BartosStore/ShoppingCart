@@ -18,12 +18,20 @@
         style="@style/Base.TextAppearance.AppCompat.Title" />
 
     <TextView
+        android:id="@+id/tvNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:text="@string/dashboard_default_news"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         app:layout_constraintTop_toBottomOf="@id/tvActualization" />
+
+    <Button
+        android:id="@+id/btnFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fire DB request"
+        app:layout_constraintTop_toBottomOf="@id/tvNews"/>
 
     <TextView
         android:layout_width="wrap_content"
