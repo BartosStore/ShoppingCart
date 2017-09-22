@@ -1,5 +1,6 @@
 package com.miba.shoppingcart
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -7,13 +8,13 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.miba.shoppingcart.entities.ShoppingItem
 
 import kotlinx.android.synthetic.main.content_main.*
@@ -35,8 +36,27 @@ class MainActivity: AppCompatActivity() {
         firebaseDB = FirebaseDatabase.getInstance().reference
         shoppingItemsDB = firebaseDB!!.child("shopping-items")
 
-        btnFirebase.setOnClickListener(View.OnClickListener {
-            loadData()
+        btnSend2Firebase.setOnClickListener(View.OnClickListener {
+            sendData()
+        })
+
+        btnDownloadFromFirebase.setOnClickListener(View.OnClickListener {
+            downloadData()
+        })
+
+        shoppingItemsDB.addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(p0: DatabaseError?) {
+                Log.d(KApp.LOG_MIBA, "▲ WARNING: ValueListener.onCancelled")
+            }
+
+            override fun onDataChange(p0: DataSnapshot?) {
+                Log.d(KApp.LOG_MIBA, "ValueListener.onDataChange")
+                val children = p0!!.children
+                Log.d(KApp.LOG_MIBA, "DB data count: " + children.count())
+                Snackbar.make(findViewById(R.id.clMain), "Je evidováno " + children.count() + " záznamů.", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show()
+            }
+
         })
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
@@ -45,14 +65,11 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    fun loadData() {
-        /*
-        val keyValue = HashMap<String, String>()
-        keyValue.put("name", "cokolada")
-        keyValue.put("description", "bila")
-        shoppingItemsDB.push().setValue(keyValue)
-        */
+    private fun downloadData() {
+        //shoppingItemsDB.get
+    }
 
+    fun sendData() {
         val addItemDialog = AlertDialog.Builder(this).create()
         addItemDialog.setTitle(R.string.dialog_add_title)
         addItemDialog.setMessage(getString(R.string.dialog_add_message))
@@ -79,11 +96,11 @@ class MainActivity: AppCompatActivity() {
                 task ->
                 if (task.isSuccessful) {
                     Log.d(KApp.LOG_MIBA, "MainActivity -> uspesne ulozeno")
-                    Snackbar.make(view, "Úspěšně uloženo.", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(findViewById(R.id.clMain), "Úspěšně uloženo.", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show()
                 } else {
                     Log.d(KApp.LOG_MIBA, "MainActivity -> nastala chyba")
-                    Snackbar.make(view, "Nastala chyba.", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(findViewById(R.id.clMain), "Nastala chyba.", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show()
                 }
             }
