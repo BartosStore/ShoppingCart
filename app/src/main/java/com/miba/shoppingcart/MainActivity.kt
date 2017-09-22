@@ -1,6 +1,5 @@
 package com.miba.shoppingcart
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -8,6 +7,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -46,6 +46,13 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun loadData() {
+        /*
+        val keyValue = HashMap<String, String>()
+        keyValue.put("name", "cokolada")
+        keyValue.put("description", "bila")
+        shoppingItemsDB.push().setValue(keyValue)
+        */
+
         val addItemDialog = AlertDialog.Builder(this).create()
         addItemDialog.setTitle(R.string.dialog_add_title)
         addItemDialog.setMessage(getString(R.string.dialog_add_message))
@@ -60,28 +67,29 @@ class MainActivity: AppCompatActivity() {
 
         addItemDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.button_ok), {
             dialogInterface, i ->
-            val name = view.etName
-            val description = view.etDescription
 
-            val data = HashMap<String, String>()
-            data.put("name", name.toString())
-            data.put("description", description.toString())
+            val name = view.etName.text
+            val description = view.etDescription.text
 
-            shoppingItemsDB.push().setValue(data).addOnCompleteListener {
+            val shoppingItemData = HashMap<String, String>()
+            shoppingItemData.put("name", name.toString().trim())
+            shoppingItemData.put("description", description.toString().trim())
+
+            shoppingItemsDB.push().setValue(shoppingItemData).addOnCompleteListener {
                 task ->
                 if (task.isSuccessful) {
-                    Snackbar.make(view, "Úspěšně uloženo.", Snackbar.LENGTH_LONG)
+                    Log.d(KApp.LOG_MIBA, "MainActivity -> uspesne ulozeno")
+                    Snackbar.make(view, "Úspěšně uloženo.", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show()
                 } else {
-                    Snackbar.make(view, "Nastala chyba.", Snackbar.LENGTH_LONG)
+                    Log.d(KApp.LOG_MIBA, "MainActivity -> nastala chyba")
+                    Snackbar.make(view, "Nastala chyba.", Snackbar.LENGTH_SHORT)
                             .setAction("Action", null).show()
                 }
             }
         })
 
         addItemDialog.show()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
